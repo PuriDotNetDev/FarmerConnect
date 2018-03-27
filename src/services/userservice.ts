@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {User} from '../models/index';
-import {Restangular} from 'ng2-restangular';
+
 import {AppSettings} from '../app/globalconstants';
 
 @Injectable()
@@ -12,5 +12,9 @@ export class UserService {
 
     getAll() {
         return this.http.get<User[]>(AppSettings.RESTDB_URL + 'fusers' , AppSettings.httpOptions);
+    }
+
+    create(user: User) {
+        return this.http.post(AppSettings.RESTDB_URL + 'fusers', user);
     }
 }
